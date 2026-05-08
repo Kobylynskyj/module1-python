@@ -1,3 +1,28 @@
+            
+
+
+
+
+
+# Шаг 2: “Добавить контакт”
+
+def add_contacts():
+    name = input("Введите имя: ")
+    while name == "":
+        print("❌ Имя не может быть пустым. Введите имя ещё раз.")
+        name = input("Введите имя: ")
+    mobile_tel = input("Введите телефон:")
+    while not mobile_tel.isdigit() or len(mobile_tel)!= 12:
+        print("❌Телефон должен содержать 12 цифр.")
+        mobile_tel = input("Введите телефон:")
+    email = input("Введите email: ")
+    while "@" not in email or "." not in email or email=="":
+        print("❌ Некорректный email. Email должен содержать @ и .")
+        email = input("Введите email: ")
+    with open("contacts.txt", "a", encoding="UTF-8") as file:
+        file.write(f"{name} | {mobile_tel} | {email}\n ")
+
+
 # Шаг 1. Работа без файлов (самый важный старт)
 def run_menu():
     while True:
@@ -10,7 +35,7 @@ def run_menu():
         print("6. Выйти")
         choice = input("Введите число (1-6): ")
         if choice == "1":
-            print("Вы выбрали: Добавить контакт")
+            add_contacts()
         elif choice == "2":
             print("Вы выбрали: Найти контакт")
         elif choice == "3":
@@ -24,11 +49,8 @@ def run_menu():
             break
         else:
             print("Неверный выбор. Попробуйте снова.")
-            
 
-
-# Шаг 2: “Добавить контакт”
-
+run_menu()
 
 
 
