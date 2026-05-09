@@ -1,7 +1,18 @@
-            
 
 
 
+# 3. 🔍 Поиск контакта
+
+def find_contact():
+    search_contact= input("Введите имя или номер телефона:")
+    file_open = open("contacts.txt", "r", encoding="UTF-8")
+    found = False
+    for i in file_open:
+        if search_contact.lower() in i.lower():
+            print(i.strip())
+            found = True
+    if not found:
+        print("❌ Контакт не найден.")
 
 
 # Шаг 2: “Добавить контакт”
@@ -37,9 +48,9 @@ def run_menu():
         if choice == "1":
             add_contacts()
         elif choice == "2":
-            print("Вы выбрали: Найти контакт")
+            find_contact()
         elif choice == "3":
-            print("Вы выбрали: Удалить контакт")
+            print("Hello")
         elif choice == "4":
             print("Вы выбрали: Обновить контакт")
         elif choice == "5":
