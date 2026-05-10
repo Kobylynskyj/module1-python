@@ -1,3 +1,30 @@
+# 4.Удалить контакт
+def remove_contact():
+    user_name = input("Введите имя или номер телефона:")
+    delete = False
+    with open("contacts.txt", "r", encoding="UTF-8") as file:
+        file_contacts = file.readlines()
+        
+        remaining_contacts = []
+        for line in file_contacts:
+            if user_name.lower() in line.lower():
+                delete = True
+                continue
+            remaining_contacts.append(line)
+    with open("contacts.txt", "w", encoding="UTF-8") as file:
+        file.writelines(remaining_contacts)
+    if delete == True:
+        print("✅ Контакт удалён!")
+    else:
+        print("❌ Контакт не найден.")
+
+
+
+
+
+
+
+
 
 
 
@@ -50,7 +77,7 @@ def run_menu():
         elif choice == "2":
             find_contact()
         elif choice == "3":
-            print("Hello")
+            remove_contact()
         elif choice == "4":
             print("Вы выбрали: Обновить контакт")
         elif choice == "5":
