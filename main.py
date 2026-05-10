@@ -1,6 +1,6 @@
 # 4.Удалить контакт
 def remove_contact():
-    user_name = input("Введите имя или номер телефона:")
+    user_name = input("Введите имя или номер телефона:").strip()
     delete = False
     with open("contacts.txt", "r", encoding="UTF-8") as file:
         file_contacts = file.readlines()
@@ -17,14 +17,6 @@ def remove_contact():
         print("✅ Контакт удалён!")
     else:
         print("❌ Контакт не найден.")
-
-
-
-
-
-
-
-
 
 
 
