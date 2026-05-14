@@ -1,7 +1,84 @@
-            
+# 6.Просмотреть контакты
+
+def check_contacts():
+    with open("contacts.txt","r", encoding="UTF-8") as file:
+        data = file.readlines()
+        data.sort()
+        for contacts in data:
+            print(contacts.strip())
+    
 
 
 
+
+
+
+
+# 5. Обновить контакт
+def update_contact():
+    update_user = input("Введите имя или номер телефона.")
+    found = False
+    with open("contacts.txt","r", encoding="UTF-8") as file:
+        read_lines = file.readlines()
+        for line in range(len(read_lines)):
+            if update_user.lower() in read_lines[line].lower():
+                    found = True
+                    name = input("Введите имя: ")
+                    while name == "":
+                        print("❌ Имя не может быть пустым. Введите имя ещё раз.")
+                        name = input("Введите имя: ")
+                    mobile_tel = input("Введите телефон:")
+                    while not mobile_tel.isdigit() or len(mobile_tel)!= 12:
+                        print("❌Телефон должен содержать 12 цифр.")
+                        mobile_tel = input("Введите телефон:")
+                    email = input("Введите email: ")
+                    while "@" not in email or "." not in email or email=="":
+                        print("❌ Некорректный email. Email должен содержать @ и .")
+                        email = input("Введите email: ")
+                    read_lines[line] = f"{name} | {mobile_tel} | {email}\n "
+    with open("contacts.txt","w", encoding="UTF-8") as file:
+        file.writelines(read_lines)
+    if found == True:
+        print("✅ Контакт обновлён!")
+    if found == False:
+        print("❌ Контакт не найден.")
+
+
+
+# 4.Удалить контакт
+def remove_contact():
+    user_name = input("Введите имя или номер телефона:").strip()
+    delete = False
+    with open("contacts.txt", "r", encoding="UTF-8") as file:
+        file_contacts = file.readlines()
+        
+        remaining_contacts = []
+        for line in file_contacts:
+            if user_name.lower() in line.lower():
+                delete = True
+                continue
+            remaining_contacts.append(line)
+    with open("contacts.txt", "w", encoding="UTF-8") as file:
+        file.writelines(remaining_contacts)
+    if delete == True:
+        print("✅ Контакт удалён!")
+    else:
+        print("❌ Контакт не найден.")
+
+
+
+# 3. 🔍 Поиск контакта
+
+def find_contact():
+    search_contact= input("Введите имя или номер телефона:")
+    file_open = open("contacts.txt", "r", encoding="UTF-8")
+    found = False
+    for i in file_open:
+        if search_contact.lower() in i.lower():
+            print(i.strip())
+            found = True
+    if not found:
+        print("❌ Контакт не найден.")
 
 
 # Шаг 2: “Добавить контакт”
@@ -37,13 +114,13 @@ def run_menu():
         if choice == "1":
             add_contacts()
         elif choice == "2":
-            print("Вы выбрали: Найти контакт")
+            find_contact()
         elif choice == "3":
-            print("Вы выбрали: Удалить контакт")
+            remove_contact()
         elif choice == "4":
-            print("Вы выбрали: Обновить контакт")
+            update_contact()
         elif choice == "5":
-            print("Вы выбрали: Просмотреть контакты")
+            check_contacts()
         elif choice == "6":
             print("Программа завершена. До свидания!")
             break
