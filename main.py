@@ -1,3 +1,19 @@
+# 6.Просмотреть контакты
+
+def check_contacts():
+    with open("contacts.txt","r", encoding="UTF-8") as file:
+        data = file.readlines()
+        data.sort()
+        for contacts in data:
+            print(contacts.strip())
+    
+
+
+
+
+
+
+
 # 5. Обновить контакт
 def update_contact():
     update_user = input("Введите имя или номер телефона.")
@@ -26,8 +42,6 @@ def update_contact():
         print("✅ Контакт обновлён!")
     if found == False:
         print("❌ Контакт не найден.")
-
-
 
 
 
@@ -106,7 +120,7 @@ def run_menu():
         elif choice == "4":
             update_contact()
         elif choice == "5":
-            print("Вы выбрали: Просмотреть контакты")
+            check_contacts()
         elif choice == "6":
             print("Программа завершена. До свидания!")
             break
